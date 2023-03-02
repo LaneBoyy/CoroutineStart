@@ -2,6 +2,7 @@ package ru.laneboy.coroutinestart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import ru.laneboy.coroutinestart.databinding.ActivityMainBinding
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadData() {
+        Log.d("MainActivity", "Load started: $this")
         binding.progressBar.isVisible = true
         binding.btnDownload.isEnabled = false
         loadCity {
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 binding.tvTemperature.text = it.toString()
                 binding.progressBar.isVisible = false
                 binding.btnDownload.isEnabled = true
+                Log.d("MainActivity", "Load finished: $this")
             }
         }
     }
