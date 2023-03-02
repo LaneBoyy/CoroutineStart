@@ -31,26 +31,31 @@ class MainActivity : AppCompatActivity() {
                 binding.progressBar.isVisible = false
                 binding.btnDownload.isEnabled = true
             }
-
         }
     }
 
     private fun loadCity(callback: (String) -> Unit) {
         thread {
-            Thread.sleep(5000)
-            callback.invoke("Moscow")
+            Thread.sleep(2500)
+            runOnUiThread {
+                callback.invoke("Moscow")
+            }
         }
     }
 
     private fun loadTemperature(city: String, callback: (Int) -> Unit) {
         thread {
-            Toast.makeText(
-                this,
-                "Loading temperature for city: $city",
-                Toast.LENGTH_SHORT
-            ).show()
-            Thread.sleep(5000)
-            callback.invoke(17)
+            runOnUiThread {
+                Toast.makeText(
+                    this,
+                    "Loading temperature for city: $city",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            Thread.sleep(2500)
+            runOnUiThread {
+                callback.invoke(17)
+            }
         }
     }
 }
